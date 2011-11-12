@@ -24,11 +24,14 @@ namespace ConfigUpdaterUtil
     /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Perform update of codeBase paths in *.exe.config
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             Console.WriteLine("*** ConfigUpdaterUtil.exe for SeQCoS ***");
-            Console.WriteLine("(This tool updates, if necessary, the Sho directory in *.exe.config files.)\n");
-            Console.WriteLine("Current directory: {0}", Directory.GetCurrentDirectory());
+            Console.WriteLine("(This tool updates, if necessary, the Sho directory path in *.exe.config files.)\n");
 
             string shoDir = Environment.GetEnvironmentVariable("SHODIR");
  
@@ -40,8 +43,9 @@ namespace ConfigUpdaterUtil
                 Environment.Exit(0);
             }
 
-            //string shoLibPath =  shoDir + @"bin\ShoViz.dll";
-            string currentDirectory = Directory.GetCurrentDirectory();
+            // If exe was called by installer, then the TARGETDIR parameter was passed. Otherwise, there should be
+            // no arguments.
+            string currentDirectory = args == null ? Directory.GetCurrentDirectory() : args[0];
 
             // Locate all the *.config files in the current directory.
             string[] configFiles = Directory.GetFiles(currentDirectory, @"*.exe.config");
@@ -107,9 +111,13 @@ namespace ConfigUpdaterUtil
             {
                 Console.WriteLine("\n\nNo updates needed.");
             }
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(true);
-        }
 
+            // If application was called by the user
+            if (args == null)
+            {
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey(true);
+            }
+        }
     }
 }

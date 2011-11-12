@@ -163,10 +163,10 @@ namespace SeqcosApp
             if (filename == null)
                 throw new ArgumentNullException("filename");
 
-            // Register AssemblyResolve event handler - for dealing with Sho libaries that are located
+            // (deprecated) Register AssemblyResolve event handler - for dealing with Sho libaries that are located
             // externally from this application's install folder
-            AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.AssemblyResolve += new ResolveEventHandler(OnAssemblyResolveEventHandler);
+            //AppDomain currentDomain = AppDomain.CurrentDomain;
+            //currentDomain.AssemblyResolve += new ResolveEventHandler(OnAssemblyResolveEventHandler);
 
             this.myFilenames = new Filenames(filename, Resource.ChartFormat);
             this.SelectedParser = parser;
@@ -177,7 +177,7 @@ namespace SeqcosApp
 
             if (!Directory.Exists(this.OutputDirectory))
                 Directory.CreateDirectory(this.OutputDirectory);
-
+                
             // Initialize SequenceAnalyzer
             this.SequenceQc = runSequenceQc ? new SequenceAnalyzer(this.SelectedParser, myFilenames.FileName) : null;
    
@@ -330,6 +330,8 @@ namespace SeqcosApp
         /// program folder. 
         /// The code below has been copied from source (1).
         /// 
+        /// Update: This method has been deprecated.
+        /// 
         /// Sources:
         /// 1. http://support.microsoft.com/kb/837908
         /// 2. http://msdn.microsoft.com/en-us/library/system.appdomain.assemblyresolve.aspx
@@ -337,6 +339,7 @@ namespace SeqcosApp
         /// <param name="sender"></param>
         /// <param name="args"></param>
         /// <returns></returns>
+        /**
         private Assembly OnAssemblyResolveEventHandler(object sender, ResolveEventArgs args)
         {
             //This handler is called only when the common language runtime tries to bind to the assembly and fails.
@@ -367,6 +370,7 @@ namespace SeqcosApp
             //Return the loaded assembly.
             return MyAssembly;
         }
+         **/
 
         #endregion
 

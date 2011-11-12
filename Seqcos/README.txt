@@ -19,7 +19,7 @@ Codeplex project website.
 #################
 
 First, install any prerequisites, including .NET 4 Framework and Sho. Next
-Run SeqcosSetup-1.0.0.msi and follow the on screen instructions.
+Run SeqcosInstaller.msi and follow the on screen instructions.
 
 #################
 # UNINSTALL
