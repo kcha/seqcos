@@ -159,9 +159,10 @@ namespace SeqcosApp.Analyzer.NCBI
 
                 foreach (var file in listing)
                 {
+                    string ext = Path.GetExtension(file);
                     string name = Path.GetFileNameWithoutExtension(file);
 
-                    if (!databases.Contains(name))
+                    if (ext == ".nsq" && !databases.Contains(name))
                     {
                         databases.Add(name);
                     }

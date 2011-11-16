@@ -59,17 +59,19 @@
     <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDbProteinExt" x:Key="OpenFileDialog_Analyzer_BLASTDbProteinExt">Protein (.pin, .psq, .phr) [not supported yet]</system:String>
 
     <!-- Run progress dialog -->
+    <!--
     <system:String x:Uid="ProgressDialog:Title" x:Key="ProgressDialog_Title">Running QC analysis</system:String>
     <system:String x:Uid="ProgressDialog:StartText" x:Key="ProgressDialog_StartText">Starting analysis...please be patient!</system:String>
     <system:String x:Uid="ProgressDialog:Loading" x:Key="ProgressDialog_Loading">Initializing...</system:String>
     <system:String x:Uid="ProgressDialog:SeqLevel" x:Key="ProgressDialog_SequenceLevelQC">Performing sequence-level QC...</system:String>
     <system:String x:Uid="ProgressDialog:Plotting" x:Key="ProgressDialog_Plotting">Generating plots...</system:String>
     <system:String x:Uid="ProgressDialog:QualScoreLevel" x:Key="ProgressDialog_QualityScoreLevelQC">Performing quality score-level QC...</system:String>
-    <system:String x:Uid="ProgressDialog:QPlotting" x:Key="ProgressDialog_QPlotting">Generating plots (the boxplot will take a while...please be patient!)</system:String>
+    <system:String x:Uid="ProgressDialog:QPlotting" x:Key="ProgressDialog_QPlotting">Generating plots (the boxplot may take a while...please be patient!)</system:String>
     <system:String x:Uid="ProgressDialog:BLAST:MakeFasta" x:Key="ProgressDialog_BLAST_MakeFasta">Generating temporary FASTA file for BLAST...</system:String>
     <system:String x:Uid="ProgressDialog:BLAST:Start" x:Key="ProgressDialog_BLAST_Start">Running BLAST...</system:String>
     <system:String x:Uid="ProgressDialog:BLAST:RmFasta" x:Key="ProgressDialog_BLAST_RmFasta">Finished! Deleting FASTA file...</system:String>
-
+    -->
+    
     <!-- Context menu for thumbnails -->
     <system:String x:Uid="Thumbnail:ContextMenu:OpenInXP" x:Key="Thumbnail_ContextMenu_OpenInExplorer">Show file in Windows Explorer</system:String>
     <system:String x:Uid="Thumbnail:ContextMenu:View" x:Key="Thumbnail_ContextMenu_View">View Image</system:String>

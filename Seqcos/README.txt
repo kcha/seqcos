@@ -1,6 +1,5 @@
 #############################################
 # Sequence Quality Control Studio (SeQCoS)
-# Version 1.0.0 (November 2011)
 #############################################
 
 SeQCoS is an open source software suite for performing quality control 
@@ -18,8 +17,9 @@ Codeplex project website.
 # INSTALLATION
 #################
 
-First, install any prerequisites, including .NET 4 Framework and Sho. Next
-Run SeqcosInstaller.msi and follow the on screen instructions.
+First, older installations of SeQCoS must be uninstalled via the Control Panel.
+Next, if applicable, install any prerequisites, including .NET 4 Framework and Sho. 
+Finally, run the MSI install file and follow the on screen instructions.
 
 #################
 # UNINSTALL
