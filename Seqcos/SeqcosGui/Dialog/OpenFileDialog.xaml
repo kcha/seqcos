@@ -68,7 +68,7 @@
                 <Grid Name="blastConfigGrid">
 
                     <StackPanel Name="blastConfigPanel">
-                        <TextBlock Text="{DynamicResource OpenFileDialog_Analyzer_BLASTSubText}" />
+                        <TextBlock Text="{DynamicResource OpenFileDialog_Analyzer_BLASTSubText}" TextWrapping="Wrap" />
 
                         <!-- Max sequences -->
                         <Grid Name="blastMaxSequences">

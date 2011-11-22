@@ -50,7 +50,7 @@
     <system:String x:Uid="OpenFileDialog:Analyzer:QualityScoreToolTip" x:Key="OpenFileDialog_Analyzer_QualityScoreToolTip">Generates QC reports based on quality score.</system:String>
     <system:String x:Uid="OpenFileDialog:Analyzer:BLAST" x:Key="OpenFileDialog_Analyzer_BLASTHeader">3. Run Local BLAST (optional)</system:String>
     <system:String x:Uid="OpenFileDialog:Analyzer:BLASTEnabled" x:Key="OpenFileDialog_Analyzer_BLASTEnabled">Enabled</system:String>
-    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTSubText" x:Key="OpenFileDialog_Analyzer_BLASTSubText">Search the input sequences against a BLAST-formatted database.</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTSubText" x:Key="OpenFileDialog_Analyzer_BLASTSubText">Search the input sequences against a BLAST-formatted database (using default UniVec search parameters).</system:String>
     <system:String x:Uid="OpenFileDialog:Analyzer:BLASTMaxSeq" x:Key="OpenFileDialog_Analyzer_BLASTMaxSequences">Maximum # of sequences to search</system:String>
     <system:String x:Uid="OpenFileDialog:Analyzer:BLASTMaxSeqToolTip" x:Key="OpenFileDialog_Analyzer_BLASTMaxSequencesToolTip">Limits the number of sequences to BLAST to avoid long compute times.</system:String>
     <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDb" x:Key="OpenFileDialog_Analyzer_BLASTDb">Select a BLAST-formatted database:</system:String>
@@ -59,7 +59,6 @@
     <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDbProteinExt" x:Key="OpenFileDialog_Analyzer_BLASTDbProteinExt">Protein (.pin, .psq, .phr) [not supported yet]</system:String>
 
     <!-- Run progress dialog -->
-    <!--
     <system:String x:Uid="ProgressDialog:Title" x:Key="ProgressDialog_Title">Running QC analysis</system:String>
     <system:String x:Uid="ProgressDialog:StartText" x:Key="ProgressDialog_StartText">Starting analysis...please be patient!</system:String>
     <system:String x:Uid="ProgressDialog:Loading" x:Key="ProgressDialog_Loading">Initializing...</system:String>
@@ -70,7 +69,6 @@
     <system:String x:Uid="ProgressDialog:BLAST:MakeFasta" x:Key="ProgressDialog_BLAST_MakeFasta">Generating temporary FASTA file for BLAST...</system:String>
     <system:String x:Uid="ProgressDialog:BLAST:Start" x:Key="ProgressDialog_BLAST_Start">Running BLAST...</system:String>
     <system:String x:Uid="ProgressDialog:BLAST:RmFasta" x:Key="ProgressDialog_BLAST_RmFasta">Finished! Deleting FASTA file...</system:String>
-    -->
     
     <!-- Context menu for thumbnails -->
     <system:String x:Uid="Thumbnail:ContextMenu:OpenInXP" x:Key="Thumbnail_ContextMenu_OpenInExplorer">Show file in Windows Explorer</system:String>
