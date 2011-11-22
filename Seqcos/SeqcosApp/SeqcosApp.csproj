@@ -71,6 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Analyzer\NCBI\BlastTools.cs" />
     <Compile Include="Analyzer\NCBI\BlastLocalHandler.cs" />
     <Compile Include="Analyzer\NCBI\BlastLocalParameters.cs" />
@@ -101,6 +104,7 @@
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

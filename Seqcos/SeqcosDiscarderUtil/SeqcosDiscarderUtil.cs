@@ -214,7 +214,7 @@ namespace SeqcosDiscarderUtil
         /// <returns>Splash text</returns>
         static string SplashString()
         {
-            string splashString = "\nSeQCoS Discarder Tool, version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3)
+            string splashString = "\nSeQCoS Discarder Tool, Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3)
                                     + "\nCopyright (c) Microsoft, 2011. All rights reserved.\n"
                 //+ "<url>"
                                     ;

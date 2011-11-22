@@ -90,6 +90,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="EventArgs\DiscardByRegexArgs.cs" />
     <Compile Include="EventArgs\TrimByRegexArgs.cs" />
     <Compile Include="ValidationRules\PositiveIntegerValidationRule.cs" />

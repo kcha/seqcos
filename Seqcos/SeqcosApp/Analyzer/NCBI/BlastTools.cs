@@ -105,10 +105,13 @@ namespace SeqcosApp.Analyzer.NCBI
 
             if (args.GapOpen != int.MaxValue)
                 str.Append(FormatArgument("-gapopen", args.GapOpen.ToString(), true));
+
             if (args.GapExtend != int.MaxValue)
                 str.Append(FormatArgument("-gapextend", args.GapExtend.ToString(), true));
+
             if (args.Mismatch <= 0)
                 str.Append(FormatArgument("-penalty", args.Mismatch.ToString(), true));
+
             if (args.EValue != int.MaxValue)
                 str.Append(FormatArgument("-evalue", args.EValue.ToString(), true));
 
@@ -149,7 +152,7 @@ namespace SeqcosApp.Analyzer.NCBI
         /// <returns>A list of unique database names</returns>
         public static List<string> QueryAvailableBlastDatabases()
         {
-            List<string> databases = new List<string>();
+            Dictionary<string, int> databases = new Dictionary<string, int>();
 
             string blastDbPath = Environment.GetEnvironmentVariable(Properties.Resource.BlastDbEnvironmentVariable);
 
@@ -162,14 +165,12 @@ namespace SeqcosApp.Analyzer.NCBI
                     string ext = Path.GetExtension(file);
                     string name = Path.GetFileNameWithoutExtension(file);
 
-                    if (ext == ".nsq" && !databases.Contains(name))
-                    {
-                        databases.Add(name);
-                    }
+                    if (ext == ".nsq")
+                        databases.Add(name, 1);
                 }
             }
 
-            return databases;
+            return new List<string>(databases.Keys);
         }
 
         #endregion

@@ -422,7 +422,7 @@ namespace SeqcosUtil
         /// <returns></returns>
         static string SplashString()
         {
-            string splashString = "\nSeQCoS command-line utility, version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3)
+            string splashString = "\nSeQCoS command-line utility, Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3)
                                     + "\nCopyright (c) Microsoft, 2011. All rights reserved.\n"
                                     //+ "<url>"
                                     ;

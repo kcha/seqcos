@@ -787,7 +787,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SeqcosApp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SeqcosApp, Version=1.0.3.1589, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_69895C4D069BC4ECBFEE461FC2364767"
@@ -869,7 +869,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SeqcosFilterTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SeqcosFilterTools, Version=1.0.3.1590, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8AD28F7DC65D96002E5ECD696B10D4DD"
@@ -1025,15 +1025,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sequence Quality Control Studio"
-        "ProductCode" = "8:{8B8CD2E7-9FF6-4304-90EA-2CE73F5FF31C}"
-        "PackageCode" = "8:{D8A4CF70-88AC-4715-9C1F-72A13B63C2CB}"
+        "ProductCode" = "8:{C133D8A8-4A7B-4CED-85C4-4535FA3B77F8}"
+        "PackageCode" = "8:{7FB7791E-8C0A-4AE1-8AD8-F670265427A8}"
         "UpgradeCode" = "8:{5FB769D4-B2FA-450C-8A47-B92610FC731A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Microsoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
