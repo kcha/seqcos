@@ -192,22 +192,22 @@ namespace SeqcosTrimmerUtil
 
             if (myArgs.Help)
             {
-                const string helpString = "Usage: SeqcosTrimmerUtil.exe [options] <input file> <output file>"
-                                    + "\nDescription: Trim reads based on length (use option -l) or quality (use option -q and optionally -l)."
-                                    + "\n\t/Help (/h)\n\t\tShow this Help information"
-                                    + "\n\t/Verbose (/v)\n\t\tDisplay more information"
+                const string helpString = "Usage: SeqcosTrimmerUtil.exe [options] <input file> <output file>\n"
+                                    + "\nDescription: Trim reads based on length (use option -l) or quality (use option -q and optionally -l).\n"
+                                    + "\n/Help (/h)\n  Show this Help information"
+                                    + "\n/Verbose (/v)\n  Display more information"
                                     + "\n\n*** Trim modes ***"
-                                    + "\n\t/TrimByLength:<INT > 0> (/l)\n\t\tMinimum length that reads will be trimmed to. Reads whose original length is less than INT will not be discarded."
-                                    + "\n\t/TrimByQuality:<INT > 0> (/q)\n\t\tMinimum Phred-based quality score that reads will be trimmed to. Trimming is done by finding the subsequence whose "
+                                    + "\n\n/TrimByLength:<INT > 0> (/l)\n  Minimum length that reads will be trimmed to. Reads whose original length is less than INT will not be discarded."
+                                    + "\n\n/TrimByQuality:<INT > 0> (/q)\n  Minimum Phred-based quality score that reads will be trimmed to. Trimming is done by finding the subsequence whose "
                                         + "sum of differences between base quality score and cutoff is maximized. If a subsequence cannot be found due to poor quality, the entire read will be "
-                                        + "discarded. \n\n\t\tCan be combined with /l option to set a minimum trimming length (e.g. if '/q 15 /l 10', any read that gets trimmed to a length less than "
+                                        + "discarded. \n\n  Can be combined with /l option to set a minimum trimming length (e.g. if '/q 15 /l 10', any read that gets trimmed to a length less than "
                                         + "10 will be discarded."
-                                    + "\n\t/TrimByRegex:<Pattern> (/r)\n\t\tTrim reads based on a .NET Framework regular expression pattern. Any matches found, will be stripped from the sequence. "
+                                    + "\n\n/TrimByRegex:<Pattern> (/r)\n  Trim reads based on a .NET Framework regular expression pattern. Any matches found, will be stripped from the sequence. "
                                         + "For more information on .NET supported regular expressions, please visit: http://msdn.microsoft.com/en-us/library/az24scfc.aspx"
                                     + "\n\n*** Trim options ***\n"
-                                    + "\n\t/Left (/L)\n\t\tWhen combined with /l, trimming occurs from the beginning of the read. When combined with /q, "
+                                    + "\n\n/Left (/L)\n  When combined with /l, trimming occurs from the beginning of the read. When combined with /q, "
                                         + "trimming occurs at both ends of the read. For both modes, this option is OFF (i.e. only trim from right side)."
-                                    + "\n\t/DiscardedFilename:<String> (/D)\n\t\tFilename to store discarded reads [optional]."
+                                    + "\n\n/DiscardedFilename:<String> (/D)\n  Filename to store discarded reads [optional]."
                                     ;
                 Console.WriteLine(helpString);
                 Environment.Exit(-1);

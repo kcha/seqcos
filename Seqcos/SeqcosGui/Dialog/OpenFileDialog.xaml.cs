@@ -99,7 +99,7 @@ namespace SeqcosGui.Dialog
             defaultItem.Content = Resource.MANUAL_CHOICE;
             this.comboFastqType.Items.Add(defaultItem);
 
-            Array validFormats = BioHelper.QueryValidFastqFormats();
+            string[] validFormats = BioHelper.QueryValidFastqFormats();
             foreach (var format in validFormats)
             {
                 ComboBoxItem item = new ComboBoxItem();

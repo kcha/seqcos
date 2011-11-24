@@ -94,9 +94,9 @@ namespace SeqcosApp
         /// Query Bio for valid Fastq format types
         /// </summary>
         /// <returns></returns>
-        public static Array QueryValidFastqFormats()
+        public static string[] QueryValidFastqFormats()
         {
-            Array formats = Enum.GetValues(typeof(FastQFormatType));        
+            string[] formats = Enum.GetNames(typeof(FastQFormatType));  
             return formats;
         }
 

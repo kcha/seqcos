@@ -165,15 +165,15 @@ namespace SeqcosDiscarderUtil
 
             if (myArgs.Help)
             {
-                const string helpString = "Usage: SeqcosDiscarderUtil.exe [options] <input file> <output file>"
-                                    + "\nDescription: Discard reads based on length (option -l) or quality (-q)."
-                                    + "\n\t/Help (/h)\n\t\tShow this Help information"
-                                    + "\n\t/Verbose (/v)\n\t\tDisplay more information"
-                                    + "\n\t/DiscardedFile:<String> (/D)\n\t\tFilename to store discarded reads [optional]."
+                const string helpString = "Usage: SeqcosDiscarderUtil.exe [options] <input file> <output file>\n"
+                                    + "\nDescription: Discard reads based on length (option -l) or quality (-q).\n"
+                                    + "\n\n/Help (/h)\n  Show this Help information"
+                                    + "\n\n/Verbose (/v)\n  Display more information"
+                                    + "\n\n/DiscardedFile:<String> (/D)\n  Filename to store discarded reads [optional]."
                                     + "\n\n*** Discard modes ***"
-                                    + "\n\t/DiscardByLength:<INT > 0> (/l)\n\t\tDiscard reads with length less than INT."
-                                    + "\n\t/DiscardByQuality:<INT > 0> (/q)\n\t\tDiscard reads with mean Phred-based quality score less than INT."
-                                    + "\n\t/DiscardByRegex:<Pattern> (/r)\n\t\tDiscard reads based a .NET Framework regular expression pattern. "
+                                    + "\n\n/DiscardByLength:<INT > 0> (/l)\n  Discard reads with length less than INT."
+                                    + "\n\n/DiscardByQuality:<INT > 0> (/q)\n  Discard reads with mean Phred-based quality score less than INT."
+                                    + "\n\n/DiscardByRegex:<Pattern> (/r)\n  Discard reads based a .NET Framework regular expression pattern. "
                                         + "For more information on .NET supported regular expressions, please visit: http://msdn.microsoft.com/en-us/library/az24scfc.aspx"
                                     ;
                 Console.WriteLine(helpString);

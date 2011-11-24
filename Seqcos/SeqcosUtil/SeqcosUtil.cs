@@ -362,20 +362,21 @@ namespace SeqcosUtil
 
             if (myArgs.help)
             {
-                Array validFastqFormats = BioHelper.QueryValidFastqFormats();
+                string[] validFastqFormats = BioHelper.QueryValidFastqFormats();
 
-                string helpString = "Usage: SeqcosUtil.exe [options] <input file>"
-                                    + "\nDescription: Evaluates the quality of sequencing reads and summarizes the results in the form of text and plots."
-                                    + " BLAST may be optionally performed against a custom database (i.e. when looking for sequence contamination)."
-                                    + "\n/help (/h)\n\tShow this help information"
-                                    + "\n/silent (/s)\n\tShow less details displayed in the console"
-                                    + "\n/FastQFormat (/q)\n\tRequired for FASTQ input files. Choose from [" + string.Join(",", validFastqFormats) + "]"
-                                    + "\n/OutputDirectory:<string> (/o)\n\tDirectory where all output files will be saved"
-                                    + "\n/UseExcelHyperlinks (/e)\n\tOutputs Excel-formatted hyperlinks in the csv file"
-                                    + "\n\n*** BLAST Options ***\n"
-                                    + "\n/ExecuteBlast (/B)\n\tPerform a BLAST of the input sequences against a custom database. Windows NCBI BLAST must be installed first"
-                                    + "\n/BlastDbPrefix:<string> (/D)\n\tDatabase to use for BLAST. The default is UniVec (http://www.ncbi.nlm.nih.gov/VecScreen/UniVec.html)"
-                                    + "\n/BlastSize:<int> (/S)\n\tLimit the number of sequences to fed to BLAST. Default is 2,000,000."
+                string helpString = "Usage: SeqcosUtil.exe [options] <input file>\n"
+                                    + "\nDescription: Evaluates the quality of sequencing reads and summarizes\n"
+                                    + " the results in the form of text and plots. BLAST may be optionally performed\n"
+                                    + " against a custom database (i.e. when looking for sequence contamination)."
+                                    + "\n\n/help (/h)\n  Show this help information"
+                                    + "\n\n/silent (/s)\n  Show less details displayed in the console"
+                                    + "\n\n/FastQFormat (/q)\n  Required for FASTQ input files. Choose from [" + string.Join(",", validFastqFormats) + "]"
+                                    + "\n\n/OutputDirectory:<string> (/o)\n  Directory where all output files will be saved"
+                                    + "\n\n/UseExcelHyperlinks (/e)\n  Outputs Excel-formatted hyperlinks in the csv file"
+                                    + "\n\n\n*** BLAST Options ***\n"
+                                    + "\n\n/ExecuteBlast (/B)\n  Perform a BLAST of the input sequences against a custom database. Windows NCBI BLAST must be installed first"
+                                    + "\n\n/BlastDbPrefix:<string> (/D)\n  Database to use for BLAST. The default is UniVec (http://www.ncbi.nlm.nih.gov/VecScreen/UniVec.html)"
+                                    + "\n\n/BlastSize:<int> (/S)\n  Limit the number of sequences to be searched by BLAST. Default is " + Resource.BLAST_MAX_SEQUENCES_DEFAULT + "."
                                     ;
                 Console.WriteLine(helpString);
                 Environment.Exit(-1);
@@ -408,7 +409,7 @@ namespace SeqcosUtil
 
                 if (myArgs.BlastSize < 0)
                 {
-                    Console.Error.WriteLine("The number of sequences to be fed to BLAST must be greater than 0.");
+                    Console.Error.WriteLine("/BlastSize must be greater than 0.");
                     Environment.Exit(-1);
                 }
             }
@@ -422,8 +423,8 @@ namespace SeqcosUtil
         /// <returns></returns>
         static string SplashString()
         {
-            string splashString = "\nSeQCoS command-line utility, Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3)
-                                    + "\nCopyright (c) Microsoft, 2011. All rights reserved.\n"
+            string splashString = "\n\nSeQCoS command-line utility, Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3)
+                                    + "\n\nCopyright (c) Microsoft, 2011. All rights reserved.\n"
                                     //+ "<url>"
                                     ;
             return splashString;

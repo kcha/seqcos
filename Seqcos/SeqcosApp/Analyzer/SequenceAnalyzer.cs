@@ -221,8 +221,8 @@ namespace SeqcosApp.Analyzer
                 int totalReadsAtThisPosition = CalculateTotalReadsAtPosition(i);
                                 
                 // C - 67, G - 71
-                GCContentByPositionArray[i] = 100*(double)(GetNumReadsAtPositionWithSymbol(67, i) + GetNumReadsAtPositionWithSymbol(71, i))
-                                        / totalReadsAtThisPosition;
+                GCContentByPositionArray[i] = 100*(double)(GetNumReadsAtPositionWithSymbol(67, i) + GetNumReadsAtPositionWithSymbol(71, i)
+                                        + GetNumReadsAtPositionWithSymbol(83, i)) / totalReadsAtThisPosition;
             }
 
             //return gcByPosition;
