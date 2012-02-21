@@ -79,7 +79,7 @@ namespace FilterTools.Tests
         }
 
         /// <summary>
-        /// Verify that null is returned if entire read is trimmed if trim length is greater than original length.
+        /// Verify that null is returned if trim length is greater than original length.
         ///</summary>
         [TestMethod()]
         public void FastqTrimNullTest()
