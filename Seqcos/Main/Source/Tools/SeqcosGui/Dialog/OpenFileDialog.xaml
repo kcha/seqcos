@@ -1,0 +1,106 @@
+﻿<!--
+<summary>
+    // This dialog will allow the user to select a sequence file.
+    // The file types supported by Bio can be retrieved by
+    // querying Framework Abstraction classes.
+</summary>
+-->
+<Window x:Class="SeqcosGui.Dialog.OpenFileDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	    mc:Ignorable="d"
+        Title="{DynamicResource OpenFileDialog_Title}" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False" 
+        BorderBrush="Black" BorderThickness="0" 
+        MaxHeight="530" MaxWidth="450" d:DesignHeight="530" d:DesignWidth="400" 
+        SizeToContent="WidthAndHeight">
+    <DockPanel Background="Silver">
+        <StackPanel DockPanel.Dock="Top" >
+            <TextBlock Text="{DynamicResource OpenFileDialog_Header}" TextWrapping="Wrap" FontSize="18"/>
+
+            <!-- Select file -->
+            <Expander Header="{DynamicResource OpenFileDialog_HeaderSubText}" IsExpanded="True" Name="browseFileExpander" FontWeight="Normal" Margin="0,12,0,0">
+                <StackPanel>
+                    <!-- Browse for file -->
+                    <TextBlock Text="{DynamicResource OpenFileDialog_FilenameText}" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Grid MinHeight="32" MaxHeight="175">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Name="textInputFilename" Margin="4,6" IsReadOnly="True" />
+                        <Button Grid.Column="1" ToolTipService.ShowOnDisabled="True" x:Name="btnBrowse" ToolTip="{DynamicResource OpenFileDialog_BrowseToolTip}" Content="{DynamicResource OpenFileDialog_Browse}" Height="25" Margin="0,0,4,0" IsEnabled="True" Click="OnBrowseButtonClick" />
+                    </Grid>
+
+                    <!-- File attribute selection -->
+                    <Grid Name="comboBoxGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource OpenFileDialog_ParserType}" TextWrapping="Wrap" Margin="4,10,0,0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{DynamicResource OpenFileDialog_FastQFormatType}" TextWrapping="Wrap" Margin="4,10,0,0"/>
+                        <ComboBox Grid.Column="0" Grid.Row="1" x:Name="comboParserType" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Width="125" IsEnabled="False" Margin="4,0,0,0" SelectionChanged="OnParserSelectionChanged" />
+                        <ComboBox Grid.Column="1" Grid.Row="1" x:Name="comboFastqType" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Width="125" IsEnabled="False" Margin="4,0,0,0" SelectionChanged="OnFastqTypeSelectionChanged" />
+                    </Grid>
+                </StackPanel>
+            </Expander>
+            
+            <!-- Select QC analysis modules to run -->
+            <Expander Header="{DynamicResource OpenFileDialog_Analyzer_Header}" HorizontalAlignment="Left" Margin="0,18,0,0" Name="analysisExpander" VerticalAlignment="Top" IsEnabled="True" IsExpanded="True">
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <CheckBox  Content="{DynamicResource OpenFileDialog_Analyzer_SequenceText}" Height="16" x:Name="sequenceCheckBox" HorizontalAlignment="Left" Margin="4,0,0,0" IsEnabled="False" ToolTip="{DynamicResource OpenFileDialog_Analyzer_SequenceToolTip}" IsChecked="True" />
+                        <CheckBox  Content="{DynamicResource OpenFileDialog_Analyzer_QualityScoreText}" Height="16" x:Name="qualityScoreCheckBox" HorizontalAlignment="Left" Margin="4,0,0,0" IsEnabled="False" ToolTip="{StaticResource OpenFileDialog_Analyzer_QualityScoreToolTip}" />
+                    </StackPanel>
+
+            </Expander>
+
+            <!-- BLAST config -->
+            <Expander Header="{DynamicResource OpenFileDialog_Analyzer_BLASTHeader}" HorizontalAlignment="Left" Margin="0,18,0,4" Name="blastExpander" VerticalAlignment="Top" IsEnabled="True">
+                <Grid Name="blastConfigGrid">
+
+                    <StackPanel Name="blastConfigPanel">
+                        <TextBlock Text="{DynamicResource OpenFileDialog_Analyzer_BLASTSubText}" TextWrapping="Wrap" />
+
+                        <!-- Max sequences -->
+                        <Grid Name="blastMaxSequences">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="29" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox Grid.Row="0" Grid.ColumnSpan="2" Content="{DynamicResource OpenFileDialog_Analyzer_BLASTEnabled}" Height="16" HorizontalAlignment="Center" Margin="4,6,0,0" Name="blastEnabledCheckBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Checked="OnBlastEnabledChecked" Unchecked="OnBlastEnabledUnchecked" IsEnabled="False" />
+
+                            <TextBlock Grid.Column="0" Name="blastMaxSequencesHeading" Text="{DynamicResource OpenFileDialog_Analyzer_BLASTMaxSequences}" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Left" Grid.Row="1" Margin="4,0,0,0" />
+                            <TextBox Grid.Column="1" Name="textBlastMaxSequences" Margin="4,6" IsReadOnly="False" IsEnabled="False" ToolTip="{StaticResource OpenFileDialog_Analyzer_BLASTMaxSequencesToolTip}" ToolTipService.ShowOnDisabled="True" Grid.Row="1" />
+                        </Grid>
+
+                        <!-- Browse BLAST database -->
+                        <TextBlock Text="{DynamicResource OpenFileDialog_Analyzer_BLASTDb}" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Left" Grid.Row="2" Margin="4,10,4,0" />                    
+
+                        <ComboBox Name="comboBlastDb" IsEnabled="False" MaxWidth="250" />
+
+                    </StackPanel>
+                </Grid>
+            </Expander>
+        </StackPanel>
+
+        <!-- Finalize buttons -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Name="finalizeGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,12,0,4">
+            <Button Name="btnRun" Content="{StaticResource Generic_Run}" MaxHeight="40" Click="OnRunClicked" Width="80" IsDefault="True" IsEnabled="False"/>
+            <Button Name="btnCancel" Content="{StaticResource Generic_Cancel}" Margin="4,0,0,0" MaxHeight="40" Click="OnCancelClicked" IsCancel="True" />
+        </StackPanel>
+    </DockPanel>
+</Window>

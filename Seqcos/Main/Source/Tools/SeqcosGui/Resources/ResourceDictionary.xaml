@@ -1,0 +1,127 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- Quality Control Application strings -->
+    <system:String x:Uid="QualityControl:AppName" x:Key="QualityControl_AppName">Sequence Quality Control Studio (SeQCoS)</system:String>
+
+    <!-- Generic strings -->
+    <system:String x:Uid="Generic:Confirm" x:Key="Generic_Confirm">OK</system:String>
+    <system:String x:Uid="Generic:Run" x:Key="Generic_Run">Run</system:String>
+    <system:String x:Uid="Generic:Cancel" x:Key="Generic_Cancel">Cancel</system:String>
+    <system:String x:Uid="Generic:Required" x:Key="Generic_Required">(* Required)</system:String>
+
+    <!-- Menu bar strings -->
+    <system:String x:Uid="MenuBar:File_Run" x:Key="MenuBar_File_Run">Start a New _Run</system:String>
+    <system:String x:Uid="MenuBar:File_Load" x:Key="MenuBar_File_Load">_Load an existing run directory</system:String>
+    <system:String x:Uid="MenuBar:File_Exit" x:Key="MenuBar_File_Exit">E_xit</system:String>
+    <system:String x:Uid="MenuBar:Tools" x:Key="MenuBar_Tools">_Tools</system:String>
+    <system:String x:Uid="MenuBar:Tools_Trim" x:Key="MenuBar_Tools_Trim">_Trim Reads...</system:String>
+    <system:String x:Uid="MenuBar:Tools_Discard" x:Key="MenuBar_Tools_Discard">_Discard Reads...</system:String>
+    <system:String x:Uid="MenuBar:Tools_ByLength" x:Key="MenuBar_Tools_ByLength">By _Length...</system:String>
+    <system:String x:Uid="MenuBar:Tools_ByQualityScore" x:Key="MenuBar_Tools_ByQualityScore">By _Quality Score...</system:String>
+    <system:String x:Uid="MenuBar:Tools_ByRegex" x:Key="MenuBar_Tools_ByRegex">By _Regular Expression...</system:String>
+    <system:String x:Uid="MenuBar:HelpMenu_About" x:Key="MenuBar_HelpMenu_About">_About</system:String>
+    <system:String x:Uid="MenuBar:HelpMenu_About" x:Key="MenuBar_HelpMenu_UserGuide">View Online _Documentation</system:String>
+
+    <!-- Panel header strings -->
+    <system:String x:Uid="Groupbox:Header_Chart" x:Key="Groupbox_Header_Chart">Chart</system:String>
+    <system:String x:Uid="Groupbox:Header_InputSummary" x:Key="Groupbox_Header_InputSummary">Input Summary</system:String>
+    <system:String x:Uid="Groupbox:Header_ImageProperties" x:Key="Groupbox_Header_ImageProperties">Image Properties</system:String>
+
+    <!-- Tab control strings -->
+    <system:String x:Uid="TabControl:Sequence" x:Key="TabControl_Sequence">Sequence</system:String>
+    <system:String x:Uid="TabControl:QualityScore" x:Key="TabControl_QualityScore">Quality Score</system:String>
+
+    <!-- Open file dialog -->
+    <system:String x:Uid="OpenFileDialog:Title" x:Key="OpenFileDialog_Title">Run</system:String>
+    <system:String x:Uid="OpenFileDialog:Header" x:Key="OpenFileDialog_Header">Run Quality Control Analysis</system:String>
+    <system:String x:Uid="OpenFileDialog:HeaderSubText" x:Key="OpenFileDialog_HeaderSubText">1. Please select a sequence file:</system:String>
+    <system:String x:Uid="OpenFileDialog:FilenameText" x:Key="OpenFileDialog_FilenameText">Filename:</system:String>
+    <system:String x:Uid="OpenFileDialog:Browse" x:Key="OpenFileDialog_Browse">Browse</system:String>
+    <system:String x:Uid="OpenFileDialog:BrowseToolTip" x:Key="OpenFileDialog_BrowseToolTip">Select a sequence file from your local system.</system:String>
+    <system:String x:Uid="OpenFileDialog:MoleculeType" x:Key="OpenFileDialog_MoleculeType">Molecule Type:</system:String>
+    <system:String x:Uid="OpenFileDialog:ParserType" x:Key="OpenFileDialog_ParserType">Format:</system:String>
+    <system:String x:Uid="OpenFileDialog:FastQFormatType" x:Key="OpenFileDialog_FastQFormatType">FASTQ Format:</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:Header" x:Key="OpenFileDialog_Analyzer_Header">2. Select QC analysis modules (or accept default selection):</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:Sequence" x:Key="OpenFileDialog_Analyzer_SequenceText">Sequence-level</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:SequenceToolTip" x:Key="OpenFileDialog_Analyzer_SequenceToolTip">Generates QC reports based on sequence.</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:QualityScore" x:Key="OpenFileDialog_Analyzer_QualityScoreText">Quality score-level</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:QualityScoreToolTip" x:Key="OpenFileDialog_Analyzer_QualityScoreToolTip">Generates QC reports based on quality score.</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLAST" x:Key="OpenFileDialog_Analyzer_BLASTHeader">3. Run Local BLAST (optional)</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTEnabled" x:Key="OpenFileDialog_Analyzer_BLASTEnabled">Enabled</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTSubText" x:Key="OpenFileDialog_Analyzer_BLASTSubText">Search the input sequences against a BLAST-formatted database (using default UniVec search parameters).</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTMaxSeq" x:Key="OpenFileDialog_Analyzer_BLASTMaxSequences">Maximum # of sequences to search</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTMaxSeqToolTip" x:Key="OpenFileDialog_Analyzer_BLASTMaxSequencesToolTip">Limits the number of sequences to BLAST to avoid long compute times.</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDb" x:Key="OpenFileDialog_Analyzer_BLASTDb">Select a BLAST-formatted database:</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDbToolTip" x:Key="OpenFileDialog_Analyzer_BLASTDbToolTip">Shows available BLAST databases currently found in your local default directory.</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDbDNAExt" x:Key="OpenFileDialog_Analyzer_BLASTDbDNAExt">DNA (.nin, .nsq, .nhr)</system:String>
+    <system:String x:Uid="OpenFileDialog:Analyzer:BLASTDbProteinExt" x:Key="OpenFileDialog_Analyzer_BLASTDbProteinExt">Protein (.pin, .psq, .phr) [not supported yet]</system:String>
+
+    <!-- Run progress dialog -->
+    <system:String x:Uid="ProgressDialog:Title" x:Key="ProgressDialog_Title">Running QC analysis</system:String>
+    <system:String x:Uid="ProgressDialog:StartText" x:Key="ProgressDialog_StartText">Starting analysis...please be patient!</system:String>
+    <system:String x:Uid="ProgressDialog:Loading" x:Key="ProgressDialog_Loading">Initializing...</system:String>
+    <system:String x:Uid="ProgressDialog:SeqLevel" x:Key="ProgressDialog_SequenceLevelQC">Performing sequence-level QC...</system:String>
+    <system:String x:Uid="ProgressDialog:Plotting" x:Key="ProgressDialog_Plotting">Generating plots...</system:String>
+    <system:String x:Uid="ProgressDialog:QualScoreLevel" x:Key="ProgressDialog_QualityScoreLevelQC">Performing quality score-level QC...</system:String>
+    <system:String x:Uid="ProgressDialog:QPlotting" x:Key="ProgressDialog_QPlotting">Generating plots (the boxplot may take a while...please be patient!)</system:String>
+    <system:String x:Uid="ProgressDialog:BLAST:MakeFasta" x:Key="ProgressDialog_BLAST_MakeFasta">Generating temporary FASTA file for BLAST...</system:String>
+    <system:String x:Uid="ProgressDialog:BLAST:Start" x:Key="ProgressDialog_BLAST_Start">Running BLAST...</system:String>
+    <system:String x:Uid="ProgressDialog:BLAST:RmFasta" x:Key="ProgressDialog_BLAST_RmFasta">Finished! Deleting FASTA file...</system:String>
+    
+    <!-- Context menu for thumbnails -->
+    <system:String x:Uid="Thumbnail:ContextMenu:OpenInXP" x:Key="Thumbnail_ContextMenu_OpenInExplorer">Show file in Windows Explorer</system:String>
+    <system:String x:Uid="Thumbnail:ContextMenu:View" x:Key="Thumbnail_ContextMenu_View">View Image</system:String>
+    
+    <!-- Input Summary statistics panel -->
+    <system:String x:Uid="Stats:TotalReadsTitle" x:Key="Stats_TotalReadsTitle">Total # of Reads: </system:String>
+    <system:String x:Uid="Stats:Description" x:Key="Stats_DescriptionTitle">Description</system:String>
+    <system:String x:Uid="Stats:Min" x:Key="Stats_MinTitle">Min</system:String>
+    <system:String x:Uid="Stats:Max" x:Key="Stats_MaxTitle">Max</system:String>
+    <system:String x:Uid="Stats:MeanTitle" x:Key="Stats_MeanTitle">Mean</system:String>
+    <system:String x:Uid="Stats:ReadLength" x:Key="Stats_ReadLength">Read Length</system:String>
+    <system:String x:Uid="Stats:ReadGcContent" x:Key="Stats_ReadGcContent">Read GC Content (%)</system:String>
+    <system:String x:Uid="Stats:BasePhred" x:Key="Stats_BasePhred">Phred Base Quality Score</system:String>
+    <system:String x:Uid="Stats:ReadPhred" x:Key="Stats_ReadPhred">Phred Read Quality Score</system:String>
+
+    <!-- Trim panel -->
+    <system:String x:Uid="Trim:Title" x:Key="TrimDialog_Title">Trim Reads</system:String>
+    <system:String x:Uid="Trim:Length:Select" x:Key="TrimDialog_Length_Select">Enter the new read length*:</system:String>
+    <system:String x:Uid="Trim:Length:SelectTip" x:Key="TrimDialog_Length_SelectTip">You may enter a decimal value between 0 and 1 to trim based on percentage of the read length, or an integer to trim based on absolute length.</system:String>
+    <system:String x:Uid="Trim:Length:Direction" x:Key="TrimDialog_Length_Direction">Trim Direction:</system:String>
+    <system:String x:Uid="Trim:Length:FromLeft" x:Key="TrimDialog_Length_FromLeft">From the left</system:String>
+    <system:String x:Uid="Trim:Length:FromRight" x:Key="TrimDialog_Length_FromRight">From the right</system:String>
+    <system:String x:Uid="Trim:Quality:Select" x:Key="TrimDialog_Quality_Select">Enter the quality score threshold (Phred-based value)*:</system:String>
+    <system:String x:Uid="Trim:Quality:MinLength" x:Key="TrimDialog_Quality_Select_MinLength">Enter a minimum length that reads can be trimmed to (anything less will be discarded):</system:String>
+
+    <!-- Discard panel -->
+    <system:String x:Uid="Discard:Title" x:Key="DiscardDialog_Title">Discard Reads</system:String>
+    <system:String x:Uid="Discard:Length:Select" x:Key="DiscardDialog_Length_Select">Enter the minimum read length threshold*:</system:String>
+    <system:String x:Uid="Discard:Length:SelectTip" x:Key="DiscardDialog_Length_SelectTip">Reads less than this length will be discarded.</system:String>
+    <system:String x:Uid="Discard:Quality:Select" x:Key="DiscardDialog_Quality_Select">Enter the minimum mean quality score threshold (Phred-based value)*:</system:String>
+    <system:String x:Uid="Discard:Quality:SelectTip" x:Key="DiscardDialog_Quality_SelectTip">Reads with a mean quality score less than this value will be discarded:</system:String>
+
+    <!-- By length tab control -->
+    <system:String x:Uid="Length:Title" x:Key="Length_Title">By Read Length</system:String>
+    
+    <!-- By quality score tab control -->
+    <system:String x:Uid="Quality:Title" x:Key="Quality_Title">By Quality Score</system:String>
+    
+    <!-- By regex tab control -->
+    <system:String x:Uid="Regex:Title" x:Key="Regex_Title">By Regular Expression</system:String>
+    <system:String x:Uid="Regex:Select" x:Key="Regex_Select">Enter a regular expression pattern*:</system:String>
+    
+    <!-- IO file control -->
+    <system:String x:Uid="IO:Input" x:Key="IODialog_InputFilename">Input Filename*:</system:String>
+    <system:String x:Uid="IO:Output" x:Key="IODialog_OutputFilename">Output Filename*:</system:String>
+    <system:String x:Uid="IO:Discarded" x:Key="IODialog_DiscardedFilename">Discarded Reads Filename:</system:String>
+
+    <!-- About dialog -->
+    <system:String x:Uid="AboutDialog:Title" x:Key="AboutDialog_Title">About</system:String>
+    <system:String x:Uid="AboutDialog:Copyright" x:Key="AboutDialog_Copyright">Copyright © Microsoft, 2011. All rights reserved.</system:String>
+    <system:String x:Uid="AboutDialog:RightsReserved" x:Key="AboutDialog_RightsReserved">All rights reserved.</system:String>
+    <system:String x:Uid="AboutDialog:URI" x:Key="AboutDialog_URI">http://seqcos.codeplex.com</system:String>
+
+
+</ResourceDictionary>

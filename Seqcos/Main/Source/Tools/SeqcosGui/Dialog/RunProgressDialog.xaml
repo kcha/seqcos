@@ -1,0 +1,53 @@
+﻿<Window x:Class="SeqcosGui.Dialog.RunProgressDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource ProgressDialog_Title}" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Height="183" Width="360"
+        xmlns:SeqcosGui="clr-namespace:SeqcosGui"
+        WindowStyle="None"
+         ContentRendered="OnWindowContentRendered" BorderThickness="1" BorderBrush="Black">
+    <Window.Resources>
+        <Style x:Key="StatusTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Width" Value="208" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Margin" Value="10,19,0,0" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="46*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Icon and Status row -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBox Name="statusTextBox" Text="{StaticResource ProgressDialog_StartText}" Grid.Column="1" Style="{StaticResource StatusTextBox}" Height="69" Margin="10,19,0,0" Width="224" />
+            <Image Height="58" HorizontalAlignment="Center" Name="image1" Stretch="Fill" Grid.Column="0" VerticalAlignment="Center" Width="47" Source="/SeqcosGui;component/Images/Bio.ico" />
+        </Grid>
+        
+        <!-- Progress Bar and Cancel Button row -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" Name="progressGrid" Width="220" >
+                <ProgressBar Height="23" Name="progressBar" Margin="6,0,6,0" Value="0" />
+            </Grid>
+            <Button Grid.Column="1" Height="23" HorizontalAlignment="Center" Margin="6,0,6,0" Name="btnCancel" VerticalAlignment="Center" Width="90" Content="{StaticResource Generic_Cancel}" Click="OnCancelClick" IsCancel="False" />
+        </Grid>
+
+    </Grid>
+</Window>
