@@ -55,7 +55,9 @@ namespace FilterTools.Tests
             ISequence actual;
             actual = target.Trim(seqObj);
             Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
-            Assert.AreEqual((expected as QualitativeSequence).QualityScores.ToString(), (actual as QualitativeSequence).QualityScores.ToString());
+            string expectedQualityScores = System.Text.Encoding.Default.GetString((expected as QualitativeSequence).GetEncodedQualityScores());
+            string actualQualityScores = System.Text.Encoding.Default.GetString((actual as QualitativeSequence).GetEncodedQualityScores());
+            Assert.AreEqual(expectedQualityScores, actualQualityScores);
         }
 
         /// <summary>
@@ -75,7 +77,9 @@ namespace FilterTools.Tests
             ISequence actual;
             actual = target.Trim(seqObj);
             Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
-            Assert.AreEqual((expected as QualitativeSequence).QualityScores.ToString(), (actual as QualitativeSequence).QualityScores.ToString());
+            string expectedQualityScores = System.Text.Encoding.Default.GetString((expected as QualitativeSequence).GetEncodedQualityScores());
+            string actualQualityScores = System.Text.Encoding.Default.GetString((actual as QualitativeSequence).GetEncodedQualityScores());
+            Assert.AreEqual(expectedQualityScores, actualQualityScores);
         }
 
         /// <summary>

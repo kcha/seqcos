@@ -137,5 +137,14 @@ namespace SeqcosApp
             }
             return new string(sequence);
         }
+
+        /// <summary>
+        /// Returns quality score sequence from a sequence object as ASCII string
+        /// </summary>
+        /// 
+        public static string GetEncodedQualityScoreStringSequence(QualitativeSequence seqObj)
+        {
+            return System.Text.Encoding.Default.GetString(seqObj.GetEncodedQualityScores());
+        }
     }
 }

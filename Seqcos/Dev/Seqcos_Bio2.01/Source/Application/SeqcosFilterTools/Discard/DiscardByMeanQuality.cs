@@ -59,7 +59,7 @@ namespace SeqcosFilterTools.Discard
         {
             if (!(parser is FastQParser))
                 throw new ArgumentException("Invalid SequenceParser type.");
-            if (mean < 0 || mean > QualitativeSequence.SangerMaxQualScore - QualitativeSequence.SangerMinQualScore)
+            if (mean < 0 || mean > QualitativeSequence.Sanger_MaxEncodedQualScore - QualitativeSequence.Sanger_MinEncodedQualScore)
                 throw new ArgumentOutOfRangeException("Invalid Phred-based quality score threshold.");
 
             this.MeanQualityThreshold = mean;
@@ -84,9 +84,8 @@ namespace SeqcosFilterTools.Discard
         /// will be discarded. False, otherwise.</returns>
         public override bool CanDiscard(ISequence seqObj)
         {
-            var myMean = QualityScoreAnalyzer.GetMeanFromBytes(
-                            ((QualitativeSequence)seqObj).QualityScores.ToArray()
-                            );
+            var myMean = QualityScoreAnalyzer.GetMeanFromIntAry(
+                            ((QualitativeSequence)seqObj).GetQualityScores());
 
             if (myMean < MeanQualityThreshold)
                 return true;

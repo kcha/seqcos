@@ -72,12 +72,12 @@ namespace SeqcosFilterTools.Trim
         /// <param name="filtered">Output sequences formatter</param>
         /// <param name="discarded">Discarded sequences formatter</param>
         /// <param name="q">Sanger Phred-based quality score threshold</param>
-        /// <param name="minLength">Minimum trim length</param>
         /// <param name="fromStart">Indicates whether trimming from the start of the read is permitted</param>
+        /// <param name="minLength">Minimum trim length</param>
         public TrimByQuality(ISequenceParser parser, ISequenceFormatter filtered, ISequenceFormatter discarded, byte q, bool fromStart, int minLength = 1)
             : base(parser, filtered, discarded, fromStart)
         {
-            if (q < 0 || q > QualitativeSequence.SangerMaxQualScore - QualitativeSequence.SangerMinQualScore)
+            if (q < 0 || q > QualitativeSequence.Sanger_MaxEncodedQualScore - QualitativeSequence.Sanger_MinEncodedQualScore)
                 throw new ArgumentOutOfRangeException("Invalid Phred-based quality score threshold.");
 
             if (minLength < 0)
@@ -115,8 +115,7 @@ namespace SeqcosFilterTools.Trim
         /// cannot be found (i.e. quality scores are below the cutoff)</returns>
         public override ISequence Trim(ISequence seqObj)
         {
-            byte[] scores = ((QualitativeSequence)seqObj).QualityScores.ToArray();
-            scores = QualityScoreAnalyzer.ConvertToPhred(scores, ((QualitativeSequence)seqObj).FormatType);
+            int[] scores = ((QualitativeSequence)seqObj).GetQualityScores();
 
             // Implement maximum sum segment algorithm.
             int start = 0;

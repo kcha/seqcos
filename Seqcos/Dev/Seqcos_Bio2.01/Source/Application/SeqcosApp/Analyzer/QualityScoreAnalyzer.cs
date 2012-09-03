@@ -201,8 +201,8 @@ namespace SeqcosApp.Analyzer
 
                     MemStream.Position = (int)readNumber;
 
-                    // Copy quality scores to a byte array.
-                    byte[] quals = ConvertToPhred(((QualitativeSequence)seqObj).QualityScores.ToArray(), this.FormatType);
+                    // Get Phred quality scores
+                    int[] phredQuals = ((QualitativeSequence)seqObj).GetQualityScores();
 
                     for (int i = 0; i < this.ReadLengthMax; i++)
                     {
@@ -214,7 +214,7 @@ namespace SeqcosApp.Analyzer
 
                         // If the read is shorter than the max read length, fill
                         // the remaining space with zeroes.
-                        byte qual = (i < quals.Length) ? quals[i] : (byte)0;
+                        byte qual = (i < phredQuals.Length) ? (byte)phredQuals[i] : (byte)0;
                         MemStream.WriteByte(qual);
 
                         var qualDouble = Convert.ToDouble(qual);
@@ -281,9 +281,9 @@ namespace SeqcosApp.Analyzer
                 }
 
                 QualitativeSequence qSeqObj = (QualitativeSequence)seqObj;
-                var qualityScoresAry = ConvertToPhred((qSeqObj).QualityScores.ToArray(), this.FormatType);
+                var qualityScoresAry = (qSeqObj).GetQualityScores();
 
-                QualityScoreBySequenceMeans[(int)i] = QualityScoreAnalyzer.GetMeanFromBytes(qualityScoresAry);
+                QualityScoreBySequenceMeans[(int)i] = QualityScoreAnalyzer.GetMeanFromIntAry(qualityScoresAry);
 
                 //i++;
             }
@@ -299,11 +299,11 @@ namespace SeqcosApp.Analyzer
         }
 
         /// <summary>
-        /// Calculate mean from a byte array
+        /// Calculate mean from a int array
         /// </summary>
         /// <param name="values">Array of byte values</param>
         /// <returns>Mean of values</returns>
-        public static double GetMeanFromBytes(byte[] values)
+        public static double GetMeanFromIntAry(int[] values)
         {
             double mean = 0;
 
@@ -321,33 +321,33 @@ namespace SeqcosApp.Analyzer
         /// <param name="value">Quality score in ASCII decimal</param>
         /// <param name="format">Original format of the quality score</param>
         /// <returns>Phred-scaled quality score</returns>
-        public static byte ConvertToPhred(byte value, FastQFormatType format)
-        {
-            byte result = value;
+        //public static byte ConvertToPhred(byte value, FastQFormatType format)
+        //{
+        //    byte result = value;
 
-            switch (format)
-            {
-                case FastQFormatType.Solexa:
-                    if (!IsBetween(value, QualitativeSequence.SolexaMinQualScore, QualitativeSequence.SolexaMaxQualScore))
-                        throw new ArgumentOutOfRangeException("value", Resource.QualityScoreOutOfRange);
-                    result = (byte)(value - QualitativeSequence.SolexaMinQualScore);
-                    break;
+        //    switch (format)
+        //    {
+        //        case FastQFormatType.:
+        //            if (!IsBetween(value, QualitativeSequence.SolexaMinQualScore, QualitativeSequence.SolexaMaxQualScore))
+        //                throw new ArgumentOutOfRangeException("value", Resource.QualityScoreOutOfRange);
+        //            result = (byte)(value - QualitativeSequence.SolexaMinQualScore);
+        //            break;
 
-                case FastQFormatType.Sanger:
-                    if (!IsBetween(value, QualitativeSequence.SangerMinQualScore, QualitativeSequence.SangerMaxQualScore))
-                        throw new ArgumentOutOfRangeException("value", Resource.QualityScoreOutOfRange);
-                    result = (byte)(value - QualitativeSequence.SangerMinQualScore);
-                    break;
+        //        case FastQFormatType.Sanger:
+        //            if (!IsBetween(value, QualitativeSequence.SangerMinQualScore, QualitativeSequence.SangerMaxQualScore))
+        //                throw new ArgumentOutOfRangeException("value", Resource.QualityScoreOutOfRange);
+        //            result = (byte)(value - QualitativeSequence.SangerMinQualScore);
+        //            break;
 
-                default:
-                    if (!IsBetween(value, QualitativeSequence.IlluminaMinQualScore, QualitativeSequence.IlluminaMaxQualScore))
-                        throw new ArgumentOutOfRangeException("value", Resource.QualityScoreOutOfRange);
-                    result = (byte)(value - QualitativeSequence.IlluminaMinQualScore);
-                    break;
-            }
+        //        default:
+        //            if (!IsBetween(value, QualitativeSequence.IlluminaMinQualScore, QualitativeSequence.IlluminaMaxQualScore))
+        //                throw new ArgumentOutOfRangeException("value", Resource.QualityScoreOutOfRange);
+        //            result = (byte)(value - QualitativeSequence.IlluminaMinQualScore);
+        //            break;
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         /// <summary>
         /// Determines whether value is between two numbers
@@ -369,15 +369,15 @@ namespace SeqcosApp.Analyzer
         /// <param name="value">Array of quality scores in ASCII decimal</param>
         /// <param name="format">Original format of the quality score</param>
         /// <returns>Phred-scaled quality score</returns>
-        public static byte[] ConvertToPhred(byte[] values, FastQFormatType format)
-        {
-            byte[] result = new byte[values.Length];
-            for (int i = 0; i < result.Length; i++)
-            {
-                result[i] = ConvertToPhred(values[i], format);
-            }
-            return result;
-        }
+        //public static byte[] ConvertToPhred(byte[] values, FastQFormatType format)
+        //{
+        //    byte[] result = new byte[values.Length];
+        //    for (int i = 0; i < result.Length; i++)
+        //    {
+        //        result[i] = ConvertToPhred(values[i], format);
+        //    }
+        //    return result;
+        //}
 
         #endregion
 

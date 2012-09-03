@@ -51,6 +51,7 @@ namespace SeqcosFilterTools.Trim
         /// </summary>
         /// <param name="parser">SequenceParser for input data</param>
         /// <param name="filtered">SequenceFormatter for output data</param>
+        /// <param name="discarded">SequenceParser for discarded data</param>
         /// <param name="fromLeft">Trim from the start of the read</param>
         public Trimmer(ISequenceParser parser, ISequenceFormatter filtered, ISequenceFormatter discarded, bool fromLeft)
         {

@@ -43,8 +43,8 @@ namespace Tests
         [TestMethod()]
         public void GetQualityFormatTypeTest()
         {
-            string formatAsString = "Solexa";
-            FastQFormatType expected = FastQFormatType.Solexa; 
+            string formatAsString = "Solexa_Illumina_v1_0";
+            FastQFormatType expected = FastQFormatType.Solexa_Illumina_v1_0; 
             FastQFormatType actual;
             actual = BioHelper.GetQualityFormatType(formatAsString);
             Assert.AreEqual(expected, actual);
@@ -56,7 +56,7 @@ namespace Tests
         [TestMethod()]
         public void QueryValidFastqFormatsTest()
         {
-            string[] expected = new string[] { "Illumina", "Solexa", "Sanger" };
+            string[] expected = new string[] { "Illumina_v1_3", "Illumina_v1_5", "Illumina_v1_8", "Sanger", "Solexa_Illumina_v1_0" };
             string[] actual;
             actual = BioHelper.QueryValidFastqFormats();
             Assert.AreEqual(expected.Length, actual.Length);
@@ -89,6 +89,20 @@ namespace Tests
             string expected = "GGCGCACTTACACCCTACATCCATTG";
             string actual;
             actual = BioHelper.GetStringSequence(seqObj);
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test for GetEncodedQualityScoreStringSequence
+        /// </summary>
+        [TestMethod()]
+        public void GetEncodedQualityScoreTest()
+        {
+            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+                                            "TACACCCTACATCCATTGAAAA", "!!\"\"##$$%%&&''()ABCDEI");
+            string expected = "!!\"\"##$$%%&&''()ABCDEI";
+            string actual;
+            actual = BioHelper.GetEncodedQualityScoreStringSequence(seqObj);
             Assert.AreEqual(expected, actual);
         }
     }
