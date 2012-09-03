@@ -15,6 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Bio;
 using Bio.IO;
+using SeqcosApp;
 
 namespace SeqcosFilterTools.Trim
 {
@@ -131,19 +132,18 @@ namespace SeqcosFilterTools.Trim
                 // skip to next pair if the start and end are the same.
                 if (start == end) { continue; }
 
-                var subSeqObj = seqObj.GetSubSequence(start, end - start);
-
-                string subSequence = new string(subSeqObj.Select(b => (char)b).ToArray());
-
-                newSequence.Append(subSequence);
+                ISequence subSeqObj = null;
 
                 if (seqObj is QualitativeSequence)
                 {
-                    string scores = new string((subSeqObj as QualitativeSequence).QualityScores.Select(b => (char)b).ToArray());
-                    newQualityScores.Append(scores);
+                    subSeqObj = (seqObj as QualitativeSequence).GetSubSequence(start, end - start);
+                    newQualityScores.Append(BioHelper.GetEncodedQualityScoreStringSequence(subSeqObj as QualitativeSequence));
                 }
-            }
+                else
+                    subSeqObj = seqObj.GetSubSequence(start, end - start);
 
+                newSequence.Append(BioHelper.GetStringSequence(subSeqObj));
+            }
 
             ISequence newSeqObj = null;
 
