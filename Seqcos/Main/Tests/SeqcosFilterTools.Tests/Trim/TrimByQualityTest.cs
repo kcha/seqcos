@@ -69,15 +69,15 @@ namespace FilterTools.Tests
         ///A test for Trim
         ///</summary>
         [TestMethod()]
-        public void TrimTest()
-        {
-            TrimByQuality target = new TrimByQuality(); // TODO: Initialize to an appropriate value
-            ISequence seqObj = null; // TODO: Initialize to an appropriate value
-            ISequence expected = null; // TODO: Initialize to an appropriate value
-            ISequence actual;
-            actual = target.Trim(seqObj);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+        //public void TrimTest()
+        //{
+        //    TrimByQuality target = new TrimByQuality(); // TODO: Initialize to an appropriate value
+        //    ISequence seqObj = null; // TODO: Initialize to an appropriate value
+        //    ISequence expected = null; // TODO: Initialize to an appropriate value
+        //    ISequence actual;
+        //    actual = target.Trim(seqObj);
+        //    Assert.AreEqual(expected, actual);
+        //    Assert.Inconclusive("Verify the correctness of this test method.");
+        //}
     }
 }
