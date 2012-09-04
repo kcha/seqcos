@@ -75,11 +75,12 @@ namespace FilterTools.Tests
         [TestMethod()]
         public void FastqTrimSanger1()
         {
-            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+            FastQFormatType format = FastQFormatType.Sanger;
+            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, format,
                                             "GGCGCACTTACACCCTACAT", "!!!000IIIGGGIHHH$$$$");
-            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, format,
                                             "CTTACACCCT", "IIIGGGIHHH");
-            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true); 
+            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true, 1); 
             ISequence actual;
             actual = target.Trim(seqObj);
             Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
@@ -92,11 +93,12 @@ namespace FilterTools.Tests
         [TestMethod()]
         public void FastqTrimSanger2()
         {
-            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+            FastQFormatType format = FastQFormatType.Sanger;
+            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, format,
                                             "GGCGCACTTACACCCTACAT", "ABCABCIIIGGGIHHH$$$$");
-            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, format,
                                             "GGCGCACTTACACCCT", "ABCABCIIIGGGIHHH");
-            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true);
+            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true, 1); 
             ISequence actual;
             actual = target.Trim(seqObj);
             Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
@@ -109,11 +111,12 @@ namespace FilterTools.Tests
         [TestMethod()]
         public void FastqTrimSanger3()
         {
-            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+            FastQFormatType format = FastQFormatType.Sanger;
+            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, format,
                                             "GGCGCACTTACACCCTACAT", "!IIGGGIIIGGGIHHH$$$$");
-            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Sanger,
+            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, format,
                                             "GGCGCACTTACACCCT", "!IIGGGIIIGGGIHHH");
-            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, false);
+            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, false, 1); 
             ISequence actual;
             actual = target.Trim(seqObj);
             Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
@@ -123,18 +126,35 @@ namespace FilterTools.Tests
         /// <summary>
         /// Trim a Solexa/Illumina_v_1.0-encoded FASTQ sequence
         /// </summary>
-        /// [TestMethod()]
-        //public void FastqTrimSolexa1()
-        //{
-        //    QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Solexa_Illumina_v1_0,
-        //                                    "GGCGCACTTACACCCTACAT", "AAABBBabacabcabca????");
-        //    QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Solexa_Illumina_v1_0,
-        //                                    "CTTACACCCT", "abacabcabca");
-        //    TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true);
-        //    ISequence actual;
-        //    actual = target.Trim(seqObj);
-        //    Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
-        //    Assert.AreEqual(BioHelper.GetEncodedQualityScoreStringSequence(expected), BioHelper.GetEncodedQualityScoreStringSequence(actual as QualitativeSequence));
-        //} 
+        [TestMethod()]
+        public void FastqTrimSolexa1()
+        {
+            FastQFormatType format = FastQFormatType.Solexa_Illumina_v1_0;
+            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, format,
+                                            "GGCGCACTTACACCCTACAT", "AAABBBabacabcabca???");
+            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, format,
+                                            "CTTACACCCTA", "abacabcabca");
+            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true, 1); 
+            ISequence actual = target.Trim(seqObj);
+            Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
+            Assert.AreEqual(BioHelper.GetEncodedQualityScoreStringSequence(expected), BioHelper.GetEncodedQualityScoreStringSequence(actual as QualitativeSequence));
+        }
+
+        /// <summary>
+        /// Trim an Illumina_v1_5-encoded FASTQ sequence
+        /// </summary>
+        [TestMethod()]
+        public void FastqTrimIllumina1_5()
+        {
+            FastQFormatType format = FastQFormatType.Illumina_v1_5;
+            QualitativeSequence seqObj = new QualitativeSequence(Alphabets.DNA, format,
+                                            "GGCGCACTTACACCCTACAT", "CCCBBBabacabcabcaCCC");
+            QualitativeSequence expected = new QualitativeSequence(Alphabets.DNA, format,
+                                            "CTTACACCCTA", "abacabcabca");
+            TrimByQuality target = new TrimByQuality(new FastQParser(), new FastQFormatter(), new FastQFormatter(), 20, true, 1);
+            ISequence actual = target.Trim(seqObj);
+            Assert.AreEqual(BioHelper.GetStringSequence(expected), BioHelper.GetStringSequence(actual));
+            Assert.AreEqual(BioHelper.GetEncodedQualityScoreStringSequence(expected), BioHelper.GetEncodedQualityScoreStringSequence(actual as QualitativeSequence));
+        } 
     }
 }

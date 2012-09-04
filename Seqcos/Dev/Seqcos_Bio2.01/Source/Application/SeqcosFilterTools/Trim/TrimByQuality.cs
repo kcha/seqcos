@@ -62,29 +62,21 @@ namespace SeqcosFilterTools.Trim
 
         /// <summary>
         /// Trim sequences based on quality
-        /// 
-        /// NOTE:
-        /// Currently, the application assumes the FASTQ format is SANGER
-        /// (Illumina 1.8+ is adopting Sanger format anyways). Thus, the
-        /// Phred quality score threshold must be within 0 and 93.
         /// </summary>
         /// <param name="parser">Input sequences parser</param>
         /// <param name="filtered">Output sequences formatter</param>
         /// <param name="discarded">Discarded sequences formatter</param>
-        /// <param name="q">Sanger Phred-based quality score threshold</param>
+        /// <param name="q">Phred-based quality score as byte</param>
         /// <param name="fromStart">Indicates whether trimming from the start of the read is permitted</param>
         /// <param name="minLength">Minimum trim length</param>
         public TrimByQuality(ISequenceParser parser, ISequenceFormatter filtered, ISequenceFormatter discarded, byte q, bool fromStart, int minLength = 1)
             : base(parser, filtered, discarded, fromStart)
         {
-            if (q < 0 || q > QualitativeSequence.Sanger_MaxEncodedQualScore - QualitativeSequence.Sanger_MinEncodedQualScore)
-                throw new ArgumentOutOfRangeException("Invalid Phred-based quality score threshold.");
+            if (q < QualitativeSequence.Phred_MinQualityScore || q > QualitativeSequence.Phred_MaxQualityScore)
+                throw new ArgumentOutOfRangeException("Invalid Phred-based quality score");
 
             if (minLength < 0)
                 throw new ArgumentOutOfRangeException("Minimum length cannot be less than zero.");
-
-            if (q < 0)
-                throw new ArgumentOutOfRangeException("Quality score threshold must be greater than zero.");
 
             this.QualityThreshold = q;
             this.MinLength = minLength;
@@ -115,6 +107,7 @@ namespace SeqcosFilterTools.Trim
         /// cannot be found (i.e. quality scores are below the cutoff)</returns>
         public override ISequence Trim(ISequence seqObj)
         {
+            // Trim based on the Phred-based quality scores
             int[] scores = ((QualitativeSequence)seqObj).GetQualityScores();
 
             // Implement maximum sum segment algorithm.

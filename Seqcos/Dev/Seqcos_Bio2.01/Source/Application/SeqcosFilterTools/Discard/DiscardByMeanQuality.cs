@@ -48,18 +48,18 @@ namespace SeqcosFilterTools.Discard
         /// Constructor for discarding reads based on minimum mean quality score.
         /// 
         /// NOTE:
-        /// Require Sanger Phred-base scores (i.e. ASCII-33)
+        /// Require Phred-base scores
         /// </summary>
         /// <param name="parser">Input sequence parser</param>
         /// <param name="filtered">Formatter for filtered reads</param>
         /// <param name="discarded">Formatter for discarded reads</param>
-        /// <param name="mean">Sanger Phred-based mean quality score</param>
+        /// <param name="mean">Phred-based mean quality score</param>
         public DiscardByMeanQuality(ISequenceParser parser, ISequenceFormatter filtered, ISequenceFormatter discarded, byte mean)
             : base(parser, filtered, discarded)
         {
             if (!(parser is FastQParser))
                 throw new ArgumentException("Invalid SequenceParser type.");
-            if (mean < 0 || mean > QualitativeSequence.Sanger_MaxEncodedQualScore - QualitativeSequence.Sanger_MinEncodedQualScore)
+            if (mean < QualitativeSequence.Phred_MinQualityScore || mean > QualitativeSequence.Phred_MaxQualityScore)
                 throw new ArgumentOutOfRangeException("Invalid Phred-based quality score threshold.");
 
             this.MeanQualityThreshold = mean;
