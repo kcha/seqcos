@@ -10,7 +10,8 @@
     <system:String x:Uid="Generic:Run" x:Key="Generic_Run">Run</system:String>
     <system:String x:Uid="Generic:Cancel" x:Key="Generic_Cancel">Cancel</system:String>
     <system:String x:Uid="Generic:Required" x:Key="Generic_Required">(* Required)</system:String>
-
+    <system:String x:Uid="Generic:Reset" x:Key="Generic_Reset">Reset</system:String>
+    
     <!-- Menu bar strings -->
     <system:String x:Uid="MenuBar:File_Run" x:Key="MenuBar_File_Run">Start a New _Run</system:String>
     <system:String x:Uid="MenuBar:File_Load" x:Key="MenuBar_File_Load">_Load an existing run directory</system:String>
@@ -116,7 +117,10 @@
     <system:String x:Uid="IO:Input" x:Key="IODialog_InputFilename">Input Filename*:</system:String>
     <system:String x:Uid="IO:Output" x:Key="IODialog_OutputFilename">Output Filename*:</system:String>
     <system:String x:Uid="IO:Discarded" x:Key="IODialog_DiscardedFilename">Discarded Reads Filename:</system:String>
-
+    <system:String x:Uid="IO:OutputToolTip" x:Key="IODialog_OutputToolTip">Specify output filename here.</system:String>
+    <system:String x:Uid="IO:DiscardedToolTip" x:Key="IODialog_DiscardedToolTip">For sequences that do not meet the criteria of your filter, they can be saved by specifying a filename here after selecting an output filename.</system:String>
+    <system:String x:Uid="IO:InputToolTip" x:Key="IODialog_InputToolTip">Click Browse to select input file.</system:String>
+    
     <!-- About dialog -->
     <system:String x:Uid="AboutDialog:Title" x:Key="AboutDialog_Title">About</system:String>
     <system:String x:Uid="AboutDialog:Copyright" x:Key="AboutDialog_Copyright">Copyright © Microsoft, 2011. All rights reserved.</system:String>

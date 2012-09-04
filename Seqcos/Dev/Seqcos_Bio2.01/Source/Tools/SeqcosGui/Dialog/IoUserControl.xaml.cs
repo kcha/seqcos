@@ -14,6 +14,8 @@ using System.Windows;
 using System.Windows.Controls;
 using SeqcosApp;
 using SeqcosGui.Properties;
+using System.Text;
+using System.IO;
 
 namespace SeqcosGui.Dialog
 {
@@ -59,6 +61,7 @@ namespace SeqcosGui.Dialog
         /// </summary>
         public IoUserControl()
         {
+            this.FileTypes = BioHelper.QuerySupportedFileFilters();
             InitializeComponent();
         }
 
@@ -159,13 +162,24 @@ namespace SeqcosGui.Dialog
         /// <param name="e">Selection changed event args</param>
         private void OnParserInputSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.ToggleRunButton(this.comboInputParserType.SelectedIndex, sender, e);
+            /// FASTQ Format combo box menu
+            if (this.comboInputParserType.SelectedIndex == 1)
+                this.comboInputFastqType.IsEnabled = true;
+            else
+                this.comboInputFastqType.IsEnabled = false;
 
-            /// FASTQ combo box menu - not implemented
-            //if (this.comboInputParserType.SelectedIndex == 0)
-                //this.comboInputFastqType.IsEnabled = true;
-            //else
-                //this.comboInputFastqType.IsEnabled = false;
+            this.ToggleRunButton(sender, e);
+        }
+
+        /// <summary>
+        /// This event is raised when the user changes the combo box for
+        /// choosing the input FASTQ format
+        /// </summary>
+        /// <param name="sender">Framework element</param>
+        /// <param name="e">Selection changed event args</param>
+        private void OnFastqFormatInputSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.ToggleRunButton(sender, e);
         }
 
         /// <summary>
@@ -176,29 +190,44 @@ namespace SeqcosGui.Dialog
         /// <param name="e">Selection changed event args</param>
         private void OnParserOutputSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.ToggleRunButton(this.comboOutputParserType.SelectedIndex, sender, e);
+            this.ToggleRunButton(sender, e);
         }
 
         /// <summary>
         /// Toggle the availability of the Run button depending 
-        /// on the currently selected index from the combo box.
+        /// the current state of the input fields and combo boxes.
         /// </summary>
-        /// <param name="selectedIndex">The selected index</param>
-        private void ToggleRunButton(int selectedIndex, object sender, SelectionChangedEventArgs e)
+        /// <param name="sender">Framework element</param>
+        /// <param name="e">Event args</param>
+        private void ToggleRunButton(object sender, EventArgs e)
         {
-            if (selectedIndex == 0)
+            bool inputParserTypeOK = false;
+            bool fastqFormatTypeOK = true;
+            bool outputParserTypeOK = false;
+            bool outputFileOK = false;
+
+
+            if (this.comboInputParserType.SelectedIndex != 0)
+                inputParserTypeOK = true;
+
+            if (this.comboInputParserType.SelectedIndex == 1 && this.comboInputFastqType.SelectedIndex == 0)
+                fastqFormatTypeOK = false;
+
+            if (this.comboOutputParserType.SelectedIndex != 0)
+                outputParserTypeOK = true;
+
+            if (this.OutputFilename != "")
+                outputFileOK = true;
+
+            if (inputParserTypeOK && fastqFormatTypeOK && outputParserTypeOK && outputFileOK)
             {
-                if (this.DisableRunButton != null)
-                {
-                    this.DisableRunButton(sender, e);
-                }
+                if (this.EnableRunButton != null)
+                    this.EnableRunButton(sender, e);
             }
             else
             {
-                if (this.EnableRunButton != null)
-                {
-                    this.EnableRunButton(sender, e);
-                }
+                if (this.DisableRunButton != null)
+                    this.DisableRunButton(sender, e);
             }
         }
 
@@ -253,6 +282,14 @@ namespace SeqcosGui.Dialog
                         this.SelectedOutputParserType = Input.Parser.Name;
                         this.btnBrowseForOutput.Focus();
                     }
+
+                    // Suggest output filename
+                    StringBuilder suggested = new StringBuilder(Path.GetFileNameWithoutExtension(this.InputFilename));
+                    suggested.Append(@".out");
+                    suggested.Append(Path.GetExtension(this.InputFilename));
+                    this.OutputFilename = Path.Combine(Path.GetDirectoryName(this.InputFilename), suggested.ToString());
+
+                    this.comboOutputParserType.IsEnabled = true;
                 }
             }
         }
@@ -267,9 +304,34 @@ namespace SeqcosGui.Dialog
         {
             string file = GetSavedFilenameFromOpenFileDialog();
             this.OutputFilename = file;
-            this.comboOutputParserType.IsEnabled = true;
-            this.textDiscardedFilename.IsEnabled = true;
-            this.btnBrowseForDiscarded.IsEnabled = true;
+            if (this.OutputFilename == "")
+            {
+                this.comboOutputParserType.IsEnabled = false;
+                this.textDiscardedFilename.IsEnabled = false;
+                this.btnBrowseForDiscarded.IsEnabled = false;
+            }
+            else
+            {
+                this.comboOutputParserType.IsEnabled = true;
+                this.textDiscardedFilename.IsEnabled = true;
+                this.btnBrowseForDiscarded.IsEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// This event is raised when the text of the output filename
+        /// box is changed.
+        /// </summary>
+        /// <param name="sender">Framework element</param>
+        /// <param name="e">event args</param>
+        private void OnOutputFilename_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.OutputFilename == "")
+                this.textDiscardedFilename.IsEnabled = false;
+            else if (!this.textDiscardedFilename.IsEnabled)
+                this.textDiscardedFilename.IsEnabled = true;
+
+            this.ToggleRunButton(sender, e);
         }
 
         /// <summary>
@@ -294,27 +356,27 @@ namespace SeqcosGui.Dialog
 
             using (System.Windows.Forms.SaveFileDialog dialog = new System.Windows.Forms.SaveFileDialog())
             {
+                dialog.Filter = String.Join("|", this.FileTypes.ToArray());
+
+                switch (this.SelectedInputParserTypeIndex)
+                {
+                    // FastQ
+                    case 1:
+                        dialog.FilterIndex = 1;
+                        break;
+
+                    // FastA
+                    case 2:
+                        dialog.FilterIndex = 2;
+                        break;
+
+                    default:
+                        dialog.FilterIndex = 0;
+                        break;
+                }
+
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    dialog.Filter = String.Join("|", this.FileTypes.ToArray());
-
-                    switch (this.SelectedOutputParserTypeIndex)
-                    {
-                        // FastQ
-                        case 1:
-                            dialog.FilterIndex = 1;
-                            break;
-
-                        // FastA
-                        case 2:
-                            dialog.FilterIndex = 2;
-                            break;
-
-                        default:
-                            dialog.FilterIndex = 0;
-                            break;
-                    }
-
                     dialog.CheckFileExists = false;
                     dialog.CheckPathExists = true;
                     dialog.OverwritePrompt = true;
@@ -324,6 +386,23 @@ namespace SeqcosGui.Dialog
             }
 
             return filename;
+        }
+
+        /// <summary>
+        /// Resets all IO fields to the initial state
+        /// </summary>
+        internal void Reset()
+        {
+            // input
+            this.InputFilename = "";
+            this.comboInputParserType.IsEnabled = false;
+            this.comboInputFastqType.IsEnabled = false;
+
+            // output
+            this.OutputFilename = "";
+            this.DiscardedFilename = "";
+            this.textDiscardedFilename.IsEnabled = false;
+            this.comboOutputParserType.IsEnabled = false;
         }
     }
 }

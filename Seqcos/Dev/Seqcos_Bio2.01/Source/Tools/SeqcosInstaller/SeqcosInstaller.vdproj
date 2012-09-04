@@ -1026,7 +1026,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sequence Quality Control Studio"
         "ProductCode" = "8:{E872106C-D66A-4649-BFF4-1F11A31C920A}"
-        "PackageCode" = "8:{5CC6D65E-4B1D-4025-B4AF-106957F1C86F}"
+        "PackageCode" = "8:{94677C86-B38F-4B5B-9AE0-46D2676384DD}"
         "UpgradeCode" = "8:{5FB769D4-B2FA-450C-8A47-B92610FC731A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

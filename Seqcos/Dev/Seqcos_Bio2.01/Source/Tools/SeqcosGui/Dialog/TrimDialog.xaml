@@ -163,6 +163,7 @@
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
             <Button Name="btnRun" Content="{StaticResource Generic_Run}" MaxHeight="25" Click="OnRunClicked" Width="50" IsDefault="True" IsEnabled="False" />
             <Button Name="btnCancel" Content="{StaticResource Generic_Cancel}" Margin="4,0,0,0" MaxHeight="25" Click="OnCancelClicked" IsCancel="True" />
+            <Button Name="btnReset" Content="{StaticResource Generic_Reset}" Margin="4,0,0,0" MaxHeight="25" Click="OnResetClicked" />
         </StackPanel>
     </DockPanel>
 </src:ToolBaseDialog>

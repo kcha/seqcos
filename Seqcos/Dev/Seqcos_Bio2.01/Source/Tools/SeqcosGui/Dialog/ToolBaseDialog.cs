@@ -16,6 +16,7 @@ using Bio.IO;
 using Bio.IO.FastA;
 using Bio.IO.FastQ;
 using SeqcosGui.Properties;
+using SeqcosApp;
 
 namespace SeqcosGui.Dialog
 {
@@ -101,6 +102,13 @@ namespace SeqcosGui.Dialog
         /// <param name="e">Routed event args</param>
         protected abstract void PrepareRun(object sender, RoutedEventArgs e);
 
+        /// <summary>
+        /// Reset all fields to the initial settings
+        /// </summary>
+        /// <param name="sender">Reset button element</param>
+        /// <param name="e">Routed event args</param>
+        protected abstract void OnResetClicked(object sender, RoutedEventArgs e);
+
         #endregion
 
         #region Methods
@@ -115,6 +123,23 @@ namespace SeqcosGui.Dialog
             options.Add(Resource.MANUAL_CHOICE);
             options.Add(SequenceParsers.FastQ.Name);
             options.Add(SequenceParsers.Fasta.Name);
+            return options;
+        }
+
+        /// <summary>
+        /// Returns a list of all valid combo box options for FASTQ encoding format
+        /// </summary>
+        /// <returns>List of combo box options</returns>
+        protected List<string> GetFastqEncodingTypeOptions()
+        {
+            List<string> options = new List<string>();
+            options.Add(Resource.MANUAL_CHOICE);
+
+            string[] validFormats = BioHelper.QueryValidFastqFormats();
+            foreach (var format in validFormats)
+            {
+                options.Add(format);
+            }
             return options;
         }
 
@@ -135,7 +160,7 @@ namespace SeqcosGui.Dialog
         }
 
         /// <summary>
-        /// This event is called by FilterToolsIODialog to disable the
+        /// This event is called by ToolBaseDialog to disable the
         /// Run button. Generally this happens when not all the 
         /// required properties in the dialog have been set.
         /// </summary>
@@ -147,7 +172,7 @@ namespace SeqcosGui.Dialog
         }
 
         /// <summary>
-        /// This event is called by FilterToolsIODialog to enable the
+        /// This event is called by ToolBaseDialog to enable the
         /// Run button.
         /// </summary>
         /// <param name="btn">Button object</param>

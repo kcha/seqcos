@@ -76,9 +76,14 @@ namespace SeqcosGui.Dialog
             SetComboBoxOptions(this.ioControl.comboInputParserType, options);
             SetComboBoxOptions(this.ioControl.comboOutputParserType, options);
 
+            // Populate the FASTQ type combo box
+            options = GetFastqEncodingTypeOptions();
+            SetComboBoxOptions(this.ioControl.comboInputFastqType, options);
+
             // Set the default combo index
             this.ioControl.comboInputParserType.SelectedIndex = 0;
             this.ioControl.comboOutputParserType.SelectedIndex = 0;
+            this.ioControl.comboInputFastqType.SelectedIndex = 0;
 
             // Register IO events
             this.ioControl.DisableRunButton += new EventHandler(this.OnDisableRunBtnCalled);
@@ -150,11 +155,11 @@ namespace SeqcosGui.Dialog
         }
 
         /// <summary>
-        /// This event is called by FilterToolsIODialog to disable the
+        /// This event is called by ToolBaseDialog to disable the
         /// Run button. Generally this happens when not all the 
         /// required properties in the dialog have been set.
         /// </summary>
-        /// <param name="sender">FilterToolsIODialog user control</param>
+        /// <param name="sender">ToolBaseDialog user control</param>
         /// <param name="e">Event args</param>
         private void OnDisableRunBtnCalled(object sender, EventArgs e)
         {
@@ -162,10 +167,10 @@ namespace SeqcosGui.Dialog
         }
 
         /// <summary>
-        /// This event is called by FilterToolsIODialog to enable the
+        /// This event is called by ToolBaseDialog to enable the
         /// Run button.
         /// </summary>
-        /// <param name="sender">FilterToolsIODialog user control</param>
+        /// <param name="sender">ToolBaseDialog user control</param>
         /// <param name="e">Event args</param>
         private void OnEnableRunBtnCalled(object sender, EventArgs e)
         {
@@ -242,6 +247,30 @@ namespace SeqcosGui.Dialog
             this.Close();
         }
 
+        /// <summary>
+        /// Resets all fields in the current dialog window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void OnResetClicked(object sender, RoutedEventArgs e)
+        {
+            if (this.IsInByLengthMode)
+            {
+                this.trimLengthValue.Text = Convert.ToString(0);
+                this.comboTrimDirection.SelectedIndex = 0;
+            }
+            else if (this.IsInByQualityMode)
+            {
+                this.trimQualityValue.Text = Convert.ToString(0);
+                this.trimQualityMinLengthValue.Text = Convert.ToString(0);
+            }
+            else if (this.IsInByRegexMode)
+            {
+                this.trimRegexPattern.Text = "";
+            }
+
+            this.ioControl.Reset();
+        }
         #endregion
     }
 }

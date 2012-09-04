@@ -17,7 +17,7 @@
         </StackPanel>
         <Label>
             <Hyperlink NavigateUri="http://seqcos.codeplex.com/" RequestNavigate="Hyperlink_RequestNavigate" >
-                <TextBlock Text="Codeplex Website" />
+                <TextBlock Text="http://seqcos.codeplex.com" />
             </Hyperlink>
         </Label>
 
