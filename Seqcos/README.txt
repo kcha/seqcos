@@ -5,19 +5,17 @@
 SeQCoS is an open source software suite for performing quality control 
 of massively parallel sequencing reads.
 
-SeQCoS is available at http://seqcos.codeplex.com under the 
-Apache License, Version 2.0 (found here http://seqcos.codeplex.com/license).
-
-The user manual is available online: http://seqcos.codeplex.com/documentation
-
-All bug reports and feedback are appreciated and should be reported on the 
-Codeplex project website.
+For more details, the user manual can be found under the "Docs" folder.
 
 INSTALLATION:
 -------------
-First, older installations of SeQCoS must be uninstalled via the Control Panel.
-Next, if applicable, install any prerequisites, including .NET 4 Framework and 
-Sho. Finally, run the MSI install file and follow the on screen instructions.
+
+ 1) Older installations of SeQCoS must be uninstalled via the Control Panel.
+ 2) If applicable, install prerequisites, including .NET 4 Framework and 
+Sho. 
+ 3) Run the MSI install file and follow the on screen instructions.
+
+A copy of Bio.dll from .NET Bio ([Version 1.0](https://bio.codeplex.com/releases/view/74962), Oct 12 2011) is distributed with this installation. .NET Bio is available under the Apache License, Version 2.0.
 
 RUNNING THE APPLICATION:
 ------------------------
@@ -38,7 +36,7 @@ Further details regarding the available options for the above command-line
 applications can be found by calling the program with the option "/help"
 (e.g. "SeqcosUtil.exe /help").
 
-UNINSTALLATION:
+UNINSTALL:
 ----------------
 Simply uninstall from the Control Panel.
 
