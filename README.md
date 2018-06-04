@@ -9,7 +9,7 @@ SeQCoS is an open source .NET software suite designed to perform quality control
 	* Minimum read length; or
 	* Minimum base quality score; or
 	* Pattern matching by regular expression
-* (Experimental) As an optional step, SeQCoS can invoke NCBI BLAST (standalone blast+ toolkit) to search the input against a BLAST-formatted database. A pre-formatted database of [NCBI UniVec](http://www.ncbi.nlm.nih.gov/VecScreen/UniVec.html), a repository of vector sequences, adapters, linkers and PCR primers that are used in DNA sequencing, is provided [here](https://github.com/kcha/seqcos/wiki/UniVecBlastDatabases); however, users are free to supply their own database for searching.
+* (Experimental) As an optional step, SeQCoS can invoke NCBI BLAST (standalone blast+ toolkit) to search the input against a BLAST-formatted database. A pre-formatted database of [NCBI UniVec](http://www.ncbi.nlm.nih.gov/VecScreen/UniVec.html), a repository of vector sequences, adapters, linkers and PCR primers that are used in DNA sequencing, is provided [here](https://github.com/kcha/seqcos/wiki/Pre-formatted-BLAST-Databases); however, users are free to supply their own database for searching.
 
 SeQCoS was written in C# using .NET 4.0 and integrates with [.NET Bio](https://github.com/dotnetbio/bio), an open-source bioinformatics library. Hence, this application takes advantage of functionality offered by .NET Bio for handling sequence data as well as [Sho](http://research.microsoft.com/en-us/projects/sho/), a data analysis and visualization application. The SeQCoS GUI was developed using Windows Presentation Foundation 4.0. 
 
